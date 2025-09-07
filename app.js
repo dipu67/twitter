@@ -14,6 +14,7 @@ async function userProfile(userName) {
     executablePath: "/usr/bin/chromium",
     args: [
         '--no-sandbox',
+       '--disable-http2',
        
       ],
   });
