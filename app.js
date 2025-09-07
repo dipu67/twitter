@@ -13,8 +13,11 @@ async function userProfile(userName) {
   const browser = await puppeteer.launch({
     executablePath: "/usr/bin/chromium",
     args: [
-        '--no-sandbox',
-       '--disable-http2',
+       '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-http2',
+    '--disable-features=IsolateOrigins,site-per-process'
        
       ],
   });
