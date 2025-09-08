@@ -17,7 +17,7 @@ async function userProfile(userName) {
     '--no-sandbox',
     '--disable-setuid-sandbox',
     '--disable-dev-shm-usage',
-    '--disable-http2',
+    // '--disable-http2',
     '--disable-features=NetworkService,IsolateOrigins,site-per-process',
     '--proxy-server="http=127.0.0.1:80;https=127.0.0.1:443"'
 
