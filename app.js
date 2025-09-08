@@ -12,18 +12,14 @@ app.use(express.urlencoded({ extended: true }));
 async function userProfile(userName) {
   const browser = await puppeteer.launch({
     executablePath: "/usr/bin/chromium",
-      args: [
-    '--no-sandbox',
-    '--disable-setuid-sandbox',
-    '--disable-http2',
-  ],
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3');
   try {
     await page.goto(`https://nitter.net/${userName}`, {
       waitUntil: 'domcontentloaded',
-      timeout: 150000
+      timeout: 10000
     });
     
     // Wait for profile elements to load
