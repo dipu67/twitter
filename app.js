@@ -23,7 +23,7 @@ async function userProfile(userName) {
   try {
     await page.goto(`https://nitter.net/${userName}`, {
       waitUntil: 'domcontentloaded',
-      timeout: 10000
+      timeout: 150000
     });
     
     // Wait for profile elements to load
