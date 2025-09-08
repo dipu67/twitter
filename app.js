@@ -11,16 +11,18 @@ app.use(express.urlencoded({ extended: true }));
 
 async function userProfile(userName) {
   const browser = await puppeteer.launch({
-  headless: true,
   executablePath: '/usr/bin/chromium',
+  headless: true,
   args: [
-       '--no-sandbox',
-    '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage',
+    '--no-sandbox',                 // Required on Heroku
+    '--disable-setuid-sandbox',     // Required on Heroku
+    '--disable-dev-shm-usage',      // Avoid /dev/shm memory issues
+    '--single-process',             // Avoid multi-process crashes
+    '--disable-gpu',                // Disable GPU
     '--disable-features=NetworkService,IsolateOrigins,site-per-process',
-    '--single-process'
-
-  ]
+    '--remote-debugging-port=9222', // Required for headless stability
+  ],
+  ignoreDefaultArgs: ['--enable-automation'], // optional: hide headless
 });
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3');
