@@ -11,8 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 async function userProfile(userName) {
   const browser = await puppeteer.launch({
-  executablePath: '/usr/bin/chromium',
-    headless: 'new' ,
+  executablePath: '/usr/bin/chromium-browser',
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
   const page = await browser.newPage();
