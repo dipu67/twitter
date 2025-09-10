@@ -11,7 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 
 async function userProfile(userName) {
   const browser = await puppeteer.launch({
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
+    executablePath: '/usr/bin/chromium-browser',
+  args: ['--no-sandbox']
 });
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3');
@@ -116,8 +117,8 @@ async function userProfile(userName) {
 
 async function userTweets(userName, maxTweets = 5) {
   const browser = await puppeteer.launch({
-  executablePath: '/usr/bin/chromium',
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
+  executablePath: '/usr/bin/chromium-browser',
+  args: ['--no-sandbox']
 });
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3');
